@@ -27,7 +27,7 @@ public class Pessoa {
 
 	@NotNull
 	private Boolean ativo;
-	
+
 	@Embedded
 	private Endereco endereco;
 
