@@ -2,6 +2,7 @@ package com.algaworks.algamoneyapi.resource;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,8 +47,9 @@ public class CategoriaResource {
 	}
 
 	@GetMapping("/{id}")
-	public Categoria buscarPeloId(@PathVariable Long id) {
-		return categoriaRepository.findById(id).orElse(new Categoria());
+	public ResponseEntity<Categoria> buscarPeloId(@PathVariable Long id) {
+		Optional<Categoria> categoriaOptional = categoriaRepository.findById(id);
+		return categoriaOptional.isPresent() ? ResponseEntity.ok(categoriaOptional.get()): ResponseEntity.notFound().build();
 	}
 
 }
