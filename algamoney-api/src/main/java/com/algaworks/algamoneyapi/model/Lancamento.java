@@ -53,10 +53,10 @@ public class Lancamento {
 
 	@JoinColumn(name = "id_categoria", nullable = false)
 	@ManyToOne
-	private Integer categoria;
+	private Categoria categoria;
 
 	@JoinColumn(name = "id_pessoa", nullable = false)
 	@ManyToOne
-	private Integer pessoa;
+	private Pessoa pessoa;
 
 }
