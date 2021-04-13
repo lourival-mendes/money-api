@@ -3,6 +3,7 @@ package com.algaworks.algamoneyapi.exceptionhandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -47,7 +48,7 @@ public class AlgaMoneyResponseEntityExceptionHandler extends ResponseEntityExcep
 		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
 
 	}
-
+	
 	private List<Erro> criarListaDeErros(BindingResult bindingResult) {
 
 		List<Erro> erros = new ArrayList<>();
@@ -74,7 +75,7 @@ public class AlgaMoneyResponseEntityExceptionHandler extends ResponseEntityExcep
 		}
 	}
 
-	@ExceptionHandler({ EmptyResultDataAccessException.class })
+	@ExceptionHandler({ EmptyResultDataAccessException.class})
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
 			WebRequest request) {
 

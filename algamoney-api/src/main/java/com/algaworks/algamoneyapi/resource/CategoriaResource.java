@@ -1,24 +1,27 @@
 package com.algaworks.algamoneyapi.resource;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algaworks.algamoneyapi.event.RecursoAtualizadoEvent;
 import com.algaworks.algamoneyapi.event.RecursoCriadoEvent;
 import com.algaworks.algamoneyapi.model.Categoria;
 import com.algaworks.algamoneyapi.repository.CategoriaRepository;
@@ -47,11 +50,26 @@ public class CategoriaResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 	}
 
+	@PutMapping("/{id}")
+	public ResponseEntity<Categoria> atualizar(@Valid @RequestBody Categoria categoria, @PathVariable Long id,
+			HttpServletResponse response) {
+
+		Categoria categoriaSalva = this.categoriaRepository.findById(id)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+
+		BeanUtils.copyProperties(categoria, categoriaSalva, "id");
+
+		Categoria categoriaAtualizada = categoriaRepository.save(categoriaSalva);
+		applicationEventPublisher.publishEvent(new RecursoAtualizadoEvent(this, response));
+		return ResponseEntity.status(HttpStatus.OK).body(categoriaAtualizada);
+
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> buscarPeloId(@PathVariable Long id) {
-		Optional<Categoria> categoriaOptional = categoriaRepository.findById(id);
-		return categoriaOptional.isPresent() ? ResponseEntity.ok(categoriaOptional.get())
-				: ResponseEntity.notFound().build();
+		Categoria categoriaSalva = categoriaRepository.findById(id)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		return ResponseEntity.ok(categoriaSalva);
 	}
 
 	@DeleteMapping("/{id}")

@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationEvent;
 
+import lombok.Getter;
+
+@Getter
 public class RecursoCriadoEvent extends ApplicationEvent {
 
 	private static final long serialVersionUID = 1L;
@@ -15,14 +18,6 @@ public class RecursoCriadoEvent extends ApplicationEvent {
 		super(source);
 		this.response = response;
 		this.id = id;
-	}
-
-	public HttpServletResponse getResponse() {
-		return response;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 }
