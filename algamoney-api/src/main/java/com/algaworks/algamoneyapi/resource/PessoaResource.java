@@ -65,6 +65,20 @@ public class PessoaResource {
 
 	}
 
+	@PutMapping("/{id}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void atualizarAtivo(@RequestBody Boolean ativo, @PathVariable Long id, HttpServletResponse response) {
+
+		Pessoa pessoaSalva = this.pessoaRepository.findById(id)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+
+		pessoaSalva.setAtivo(ativo);
+		pessoaRepository.save(pessoaSalva);
+
+		applicationEventPublisher.publishEvent(new RecursoAtualizadoEvent(this, response));
+
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Pessoa> buscarPeloId(@PathVariable Long id) {
 		Pessoa pessoaSalva = this.pessoaRepository.findById(id)
