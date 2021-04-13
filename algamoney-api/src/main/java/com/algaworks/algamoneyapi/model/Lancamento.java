@@ -19,6 +19,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.NumberFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -35,9 +37,11 @@ public class Lancamento {
 	private String descricao;
 
 	@Column(name = "data_vencimento", nullable = false)
+	@JsonFormat(pattern =  "dd/MM/yyyy")
 	private LocalDate dataVencimento;
 
 	@Column(name = "data_pagamento")
+	@JsonFormat(pattern =  "dd/MM/yyyy")
 	private LocalDate dataPagamento;
 
 	@NotNull
