@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algamoneyapi.event.RecursoCriadoEvent;
@@ -53,16 +54,9 @@ public class PessoaResource {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> removerPeloId(@PathVariable Long id) {
-
-		Optional<Pessoa> pessoaOptional = pessoaRepository.findById(id);
-
-		if (pessoaOptional.isPresent()) {
-			pessoaRepository.deleteById(id);
-			return ResponseEntity.noContent().build();
-		} else
-			return ResponseEntity.notFound().build();
-
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void removerPeloId(@PathVariable Long id) {
+		pessoaRepository.deleteById(id);
 	}
 
 }
