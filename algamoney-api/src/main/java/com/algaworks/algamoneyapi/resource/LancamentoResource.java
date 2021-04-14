@@ -53,14 +53,8 @@ public class LancamentoResource {
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@GetMapping
-	public List<Lancamento> listar() {
-		return lancamentoRepository.findAll();
-	}
-
-	@GetMapping("filtros")
-	public List<Lancamento> filtrar(LancamentoFilter lancamentoFilter) {
+	public List<Lancamento> pesquisar(LancamentoFilter lancamentoFilter) {
 		return lancamentoRepository.filtrar(lancamentoFilter);
-//		return lancamentoRepository.findAll();
 	}
 
 	@PostMapping
