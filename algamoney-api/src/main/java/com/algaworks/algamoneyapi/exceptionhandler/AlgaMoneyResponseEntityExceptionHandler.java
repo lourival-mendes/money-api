@@ -86,4 +86,16 @@ public class AlgaMoneyResponseEntityExceptionHandler extends ResponseEntityExcep
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 
 	}
+
+	@ExceptionHandler({ java.sql.SQLIntegrityConstraintViolationException.class })
+	public ResponseEntity<Object> SQLIntegrityConstraintViolationException(
+			java.sql.SQLIntegrityConstraintViolationException ex, WebRequest request) {
+
+		String mensagemUsuario = messageSource.getMessage("recurso.operacao-nao-permitida", null,
+				LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+
+	}
 }
