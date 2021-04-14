@@ -36,12 +36,14 @@ public class Lancamento {
 	@Size(min = 5, max = 50)
 	private String descricao;
 
-	@Column(name = "data_vencimento", nullable = false)
-	@JsonFormat(pattern =  "dd/MM/yyyy")
+	@NotNull
+	@Column(name = "data_vencimento")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataVencimento;
 
+	@NotNull
 	@Column(name = "data_pagamento")
-	@JsonFormat(pattern =  "dd/MM/yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataPagamento;
 
 	@NotNull
@@ -55,11 +57,13 @@ public class Lancamento {
 	@Enumerated(EnumType.STRING)
 	private TipoLancameto tipo;
 
-	@JoinColumn(name = "id_categoria", nullable = false)
+	@NotNull
+	@JoinColumn(name = "id_categoria")
 	@ManyToOne
 	private Categoria categoria;
 
-	@JoinColumn(name = "id_pessoa", nullable = false)
+	@NotNull
+	@JoinColumn(name = "id_pessoa")
 	@ManyToOne
 	private Pessoa pessoa;
 
