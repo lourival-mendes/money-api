@@ -12,7 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.algaworks.algamoneyapi.model.Lancamento;
-import com.algaworks.algamoneyapi.resource.repository.filter.LancamentoFilter;
+import com.algaworks.algamoneyapi.repository.filter.LancamentoFilter;
 
 public class LacamentoRepositoryImpl implements LancamentoRepositoryQuery {
 
@@ -20,7 +20,7 @@ public class LacamentoRepositoryImpl implements LancamentoRepositoryQuery {
 	private EntityManager manager;
 
 	@Override
-	public List<Lancamento> filter(LancamentoFilter lancamentoFilter) {
+	public List<Lancamento> filtrar(LancamentoFilter lancamentoFilter) {
 
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Lancamento> criteria = builder.createQuery(Lancamento.class);

@@ -32,7 +32,7 @@ import com.algaworks.algamoneyapi.event.RecursoCriadoEvent;
 import com.algaworks.algamoneyapi.exceptionhandler.AlgaMoneyResponseEntityExceptionHandler.Erro;
 import com.algaworks.algamoneyapi.model.Lancamento;
 import com.algaworks.algamoneyapi.repository.LancamentoRepository;
-import com.algaworks.algamoneyapi.resource.repository.filter.LancamentoFilter;
+import com.algaworks.algamoneyapi.repository.filter.LancamentoFilter;
 import com.algaworks.algamoneyapi.service.LancamentoService;
 import com.algaworks.algamoneyapi.service.exception.PessoaInexistenteOuInativaException;
 
@@ -59,8 +59,8 @@ public class LancamentoResource {
 
 	@GetMapping("filtros")
 	public List<Lancamento> filtrar(LancamentoFilter lancamentoFilter) {
-//		return lancamentoRepository.filter(lancamentoFilter);
-		return lancamentoRepository.findAll();
+		return lancamentoRepository.filtrar(lancamentoFilter);
+//		return lancamentoRepository.findAll();
 	}
 
 	@PostMapping
