@@ -2,7 +2,6 @@ package com.algaworks.algamoneyapi.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
@@ -32,3 +31,4 @@ public abstract class Lancamento_ {
 	public static final String DESCRICAO = "descricao";
 
 }
+

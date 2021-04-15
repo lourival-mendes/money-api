@@ -15,3 +15,4 @@ public abstract class Categoria_ {
 	public static final String ID = "id";
 
 }
+
