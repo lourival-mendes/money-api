@@ -12,7 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.algaworks.algamoneyapi.model.Lancamento;
-import com.algaworks.algamoneyapi.model.metaModel.Lancamento_;
+import com.algaworks.algamoneyapi.model.Lancamento_;
 import com.algaworks.algamoneyapi.repository.filter.LancamentoFilter;
 
 public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {

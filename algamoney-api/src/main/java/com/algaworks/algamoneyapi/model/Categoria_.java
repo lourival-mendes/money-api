@@ -1,10 +1,8 @@
-package com.algaworks.algamoneyapi.model.metaModel;
+package com.algaworks.algamoneyapi.model;
 
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
-
-import com.algaworks.algamoneyapi.model.Categoria;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Categoria.class)
