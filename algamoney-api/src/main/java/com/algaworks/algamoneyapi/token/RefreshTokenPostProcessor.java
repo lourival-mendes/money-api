@@ -1,4 +1,4 @@
-package com.algaworks.algamoneyapi.config;
+package com.algaworks.algamoneyapi.token;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
