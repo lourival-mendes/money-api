@@ -1,6 +1,6 @@
 package com.algaworks.algamoneyapi.model;
 
-public enum TipoLancameto {
+public enum TipoLancamento {
 	
 	
 	RECEITA,

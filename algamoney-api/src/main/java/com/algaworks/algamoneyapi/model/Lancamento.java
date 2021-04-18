@@ -55,7 +55,7 @@ public class Lancamento {
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private TipoLancameto tipo;
+	private TipoLancamento tipo;
 
 	@NotNull
 	@JoinColumn(name = "id_categoria")
