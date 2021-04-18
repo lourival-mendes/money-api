@@ -15,8 +15,8 @@ CREATE TABLE `usuario_permissao` (
   FOREIGN KEY (id_usuario) REFERENCES usuario(id),
   FOREIGN KEY (id_permissao) REFERENCES permissao(id));
   
-  INSERT INTO usuario (nome, email, senha) values ("Administrador", "minhavirtude@gmail.com", "senha");
-  INSERT INTO usuario (nome, email, senha) values ("Pesquisador", "lourivalmendes@hotmail.com", "senha");
+  INSERT INTO usuario (nome, email, senha) values ("Administrador", "minhavirtude@gmail.com", "$2a$10$MDc27YAC4RJdZTzkfN4dLOPNLGkv.BQMX/JSZ0JeryCfH1mn0p/Gq");
+  INSERT INTO usuario (nome, email, senha) values ("Pesquisador", "lourivalmendes@hotmail.com", "$2a$10$MDc27YAC4RJdZTzkfN4dLOPNLGkv.BQMX/JSZ0JeryCfH1mn0p/Gq");
 
   INSERT INTO permissao (descricao) values ("ROLE_CADASTRAR_CATEGORIA");
   INSERT INTO permissao (descricao) values ("ROLE_PESQUIAR_CATEGORIA");
