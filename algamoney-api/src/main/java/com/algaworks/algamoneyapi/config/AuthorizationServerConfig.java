@@ -28,14 +28,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
 		String secret = (new BCryptPasswordEncoder()).encode("@ngul@r0");
-		int accessTokenValiditySeconds = 30;
+		int accessTokenValiditySeconds = 180;
 		int refreshTokenValiditySeconds = 3600 * 24;
 
-		clients.inMemory().withClient("angular").secret(secret).scopes("read", "write")
+		clients.inMemory().withClient("angular").secret(secret).scopes("read", "write", "erase")
 				.authorizedGrantTypes("password", "refresh_token")
 				.accessTokenValiditySeconds(accessTokenValiditySeconds)
 				.refreshTokenValiditySeconds(refreshTokenValiditySeconds).and().withClient("mobile").secret(secret)
-				.scopes("read").authorizedGrantTypes("password", "refresh_token")
+				.scopes("read", "write", "erase").authorizedGrantTypes("password", "refresh_token")
 				.accessTokenValiditySeconds(accessTokenValiditySeconds)
 				.refreshTokenValiditySeconds(refreshTokenValiditySeconds);
 	}
