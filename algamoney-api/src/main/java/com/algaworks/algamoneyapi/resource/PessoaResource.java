@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,11 +38,13 @@ public class PessoaResource {
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public List<Pessoa> listar() {
 		return pessoaRepository.findAll();
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
 
 		Pessoa pessoaCriada = pessoaRepository.save(pessoa);
@@ -51,11 +54,11 @@ public class PessoaResource {
 	}
 
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Pessoa> atualizar(@Valid @RequestBody Pessoa pessoa, @PathVariable Long id,
 			HttpServletResponse response) {
 
-		Pessoa pessoaSalva = this.pessoaRepository.findById(id)
-				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		Pessoa pessoaSalva = pessoaRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
 
 		BeanUtils.copyProperties(pessoa, pessoaSalva, "id");
 
@@ -66,11 +69,11 @@ public class PessoaResource {
 	}
 
 	@PutMapping("/{id}/ativo")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void atualizarAtivo(@RequestBody Boolean ativo, @PathVariable Long id, HttpServletResponse response) {
 
-		Pessoa pessoaSalva = this.pessoaRepository.findById(id)
-				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		Pessoa pessoaSalva = pessoaRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
 
 		pessoaSalva.setAtivo(ativo);
 		pessoaRepository.save(pessoaSalva);
@@ -80,13 +83,14 @@ public class PessoaResource {
 	}
 
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public ResponseEntity<Pessoa> buscarPeloId(@PathVariable Long id) {
-		Pessoa pessoaSalva = this.pessoaRepository.findById(id)
-				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		Pessoa pessoaSalva = pessoaRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
 		return pessoaSalva.equals(null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(pessoaSalva);
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removerPeloId(@PathVariable Long id) {
 		pessoaRepository.deleteById(id);
