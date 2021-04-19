@@ -1,0 +1,964 @@
+{
+	"info": {
+		"_postman_id": "8f7bc46a-433e-470c-905b-5605f3c11fd2",
+		"name": "Alga Money",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "criar",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTg3OTIwNDgsInVzZXJfbmFtZSI6Im1pbmhhdmlydHVkZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUkVNT1ZFUl9MQU5DQU1FTlRPIiwiUk9MRV9DQURBU1RSQVJfUEVTU09BIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9SRU1PVkVSX0NBVEVHT1JJQSJdLCJqdGkiOiI1ODQwNTFjNy0yMmE2LTRlODctYWIxMy0zNzVhMzZjMDg4ZDEiLCJjbGllbnRfaWQiOiJtb2JpbGUiLCJzY29wZSI6WyJyZWFkIl19.xAo8MNPXsdgwd_JVpeCfLmtA93v9ZkpwW0xBdIqApD8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTg3OTE5MTksInVzZXJfbmFtZSI6Im1pbmhhdmlydHVkZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUkVNT1ZFUl9MQU5DQU1FTlRPIiwiUk9MRV9DQURBU1RSQVJfUEVTU09BIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9SRU1PVkVSX0NBVEVHT1JJQSJdLCJqdGkiOiI4MmU3OGJhZC02MmIyLTQ2MzUtYTU2Zi05MzlkYmMzMDliNTMiLCJjbGllbnRfaWQiOiJtb2JpbGUiLCJzY29wZSI6WyJyZWFkIl19.DfMXDW9u2zIJBk0XcNVWBgvMd6fTKzhevWpj_R-ZhgI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"1"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remover id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Farmácia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categorias/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar todas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar -> erro 400",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Financiamento\"\r\n    \"teste\": \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id -> erro 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categorias/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pessoas",
+			"item": [
+				{
+					"name": "criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": true,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairro\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar sem endereço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": \"true\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairros\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar ativo id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "false",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoas/1/ativo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"1",
+								"ativo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remover id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoas/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar todas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar -> 400",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lourival\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por id -> 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoas/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lancamentos",
+			"item": [
+				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "like descrição",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos?descricao=descr",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos"
+									],
+									"query": [
+										{
+											"key": "descricao",
+											"value": "descr"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "vencimento de",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos?dataVencimentoDe=2021-04-14",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos"
+									],
+									"query": [
+										{
+											"key": "dataVencimentoDe",
+											"value": "2021-04-14"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "vencimento até",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos?dataVencimentoAte=2021-04-04",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos"
+									],
+									"query": [
+										{
+											"key": "dataVencimentoAte",
+											"value": "2021-04-04"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "vencimento entre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos?dataVencimentoDe=2021-04-04&dataVencimentoAte=2021-04-05",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos"
+									],
+									"query": [
+										{
+											"key": "dataVencimentoDe",
+											"value": "2021-04-04"
+										},
+										{
+											"key": "dataVencimentoAte",
+											"value": "2021-04-05"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "paginacao",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos?size=5&page=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Criando lançamento de teste\",\r\n    \"dataVencimento\": \"2021-04-13\",\r\n    \"dataPagamento\": \"2021-04-14\",\r\n    \"valor\": 10.50,\r\n    \"observacao\": \"observação\",\r\n    \"tipo\": \"DESPESA\",\r\n    \"categoria\": {\r\n        \"id\": 1\r\n    },\r\n    \"pessoa\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lancamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lancamentos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Atualizando lançamento para teste\",\r\n    \"dataVencimento\": \"2021-04-03\",\r\n    \"dataPagamento\": \"2021-04-04\",\r\n    \"valor\": 15.50,\r\n    \"observacao\": \"Observação\",\r\n    \"tipo\": \"DESPESA\",\r\n    \"categoria\": {\r\n        \"id\": 2\r\n    },\r\n    \"pessoa\": {\r\n        \"id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lancamentos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar data pagamento id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"2021-04-30\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lancamentos/1/datapagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos",
+								"1",
+								"datapagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remover id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lancamentos/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar todas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 81c53907-42cb-434c-93f4-e816bf29a82a",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/lancamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar -> 400",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Atualizando lançamento para teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lancamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por id -> 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lancamentos/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lancamentos",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "oauth",
+			"item": [
+				{
+					"name": "novo access token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "mobile",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "@ngul@r0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client",
+									"value": "angular",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "minhavirtude@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "gran_type",
+									"value": "refresh_token",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiJmOTAwZjM4Ni04ZTViLTQyNjgtYTg3MS0xOGYwMmMzY2ZmOGMiLCJleHAiOjE2MTg3MDg0NzIsImF1dGhvcml0aWVzIjpbIlJPTEVfUk9MRSJdLCJqdGkiOiJhOTAyOGY5ZC04YmRhLTQyZjUtODVkNS0wYmI5MTUxYTRiNDMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.48fxO6Vwy5c4qNc9VW_gE68wtzo19J1C7tITxF-KZVQ",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "novo access token refresh token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "angular",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "@ngul@r0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client",
+									"value": "angular",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiJmOTAwZjM4Ni04ZTViLTQyNjgtYTg3MS0xOGYwMmMzY2ZmOGMiLCJleHAiOjE2MTg3MDg0NzIsImF1dGhvcml0aWVzIjpbIlJPTEVfUk9MRSJdLCJqdGkiOiJhOTAyOGY5ZC04YmRhLTQyZjUtODVkNS0wYmI5MTUxYTRiNDMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.48fxO6Vwy5c4qNc9VW_gE68wtzo19J1C7tITxF-KZVQ",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout -> revoke token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTg3OTQ4OTksInVzZXJfbmFtZSI6Im1pbmhhdmlydHVkZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUkVNT1ZFUl9MQU5DQU1FTlRPIiwiUk9MRV9DQURBU1RSQVJfUEVTU09BIiwiUk9MRV9QRVNRVUlTQVJfQ0FURUdPUklBIiwiUk9MRV9SRU1PVkVSX0NBVEVHT1JJQSJdLCJqdGkiOiI5YzI5YzExNi01YWQwLTQyZGEtYmI2My02ZTMyMjIzNmRhYjIiLCJjbGllbnRfaWQiOiJtb2JpbGUiLCJzY29wZSI6WyJyZWFkIl19.faoQdO1hx5WfAvVPWIszGfm7lVmqvLPVSk135YrpAJA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/tokens/revoke",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tokens",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
