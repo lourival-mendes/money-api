@@ -1,19 +1,24 @@
 package com.algaworks.algamoneyapi.cors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import com.algaworks.algamoneyapi.config.property.AlgaMoneyApiProperty;
+
 /**
- * Esta classe é uma alternativa relativa a CorsFilter, estudar para decidir qual utilizar.*/
-@Configuration
+ * Esta classe é uma alternativa relativa a CorsFilter, estudar para decidir
+ * qual utilizar.
+ */
+//@Configuration
 public class CorsConfig {
 
-	private String originPermitida = "http://localhost:8081"; // TODO: Configurar para diferentes ambientes
+	@Autowired
+	private AlgaMoneyApiProperty algaMoneyApiProperty;
 
 	@Bean
 	public FilterRegistrationBean<CorsFilter> corsFilter() {
@@ -21,7 +26,7 @@ public class CorsConfig {
 
 		CorsConfiguration configAutenticacao = new CorsConfiguration();
 		configAutenticacao.setAllowCredentials(true);
-		configAutenticacao.addAllowedOrigin(originPermitida);
+		configAutenticacao.addAllowedOrigin(algaMoneyApiProperty.getOriginPermitida());
 		configAutenticacao.addAllowedHeader("Authorization");
 		configAutenticacao.addAllowedHeader("Content-Type");
 		configAutenticacao.addAllowedHeader("Accept");

@@ -10,15 +10,19 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-//@Component
-//@Order(Ordered.HIGHEST_PRECEDENCE)
+import com.algaworks.algamoneyapi.config.property.AlgaMoneyApiProperty;
+
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-	private String originPermitida = "http://localhost:8080"; // Falta configurar para diferentes ambientes dev/prod
+	@Autowired
+	private AlgaMoneyApiProperty algaMoneyApiProperty;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -26,6 +30,7 @@ public class CorsFilter implements Filter {
 
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+		String originPermitida = algaMoneyApiProperty.getOriginPermitida();
 
 		httpServletResponse.setHeader("Access-Cotrol-Allow-Origin", originPermitida);
 		httpServletResponse.setHeader("Access-Cotrol-Allow-Credentials", "true");
