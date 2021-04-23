@@ -5,9 +5,13 @@ import java.time.LocalDate;
 
 import com.algaworks.algamoney.api.model.TipoLancamento;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class LancamentoResumo {
 
 	private Long id;
@@ -19,15 +23,4 @@ public class LancamentoResumo {
 	private String categoria;
 	private String pessoa;
 
-	public LancamentoResumo(Long id, String descricao, LocalDate dataVencimento, LocalDate dataPagamento,
-			BigDecimal valor, TipoLancamento tipo, String categoria, String pessoa) {
-		this.id = id;
-		this.descricao = descricao;
-		this.dataVencimento = dataVencimento;
-		this.dataPagamento = dataPagamento;
-		this.valor = valor;
-		this.tipo = tipo;
-		this.categoria = categoria;
-		this.pessoa = pessoa;
-	}
 }
