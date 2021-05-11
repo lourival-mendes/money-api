@@ -27,8 +27,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-		String secret = (new BCryptPasswordEncoder()).encode("@ngul@r0");
-		int accessTokenValiditySeconds = 180;
+		String secret = (new BCryptPasswordEncoder()).encode("algaworks");
+		int accessTokenValiditySeconds = 3600 * 24;
 		int refreshTokenValiditySeconds = 3600 * 24;
 
 		clients.inMemory().withClient("angular").secret(secret).scopes("read", "write", "erase")
