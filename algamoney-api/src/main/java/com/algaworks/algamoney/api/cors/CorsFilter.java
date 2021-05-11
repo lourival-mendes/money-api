@@ -32,14 +32,14 @@ public class CorsFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String originPermitida = algaMoneyApiProperty.getOriginPermitida();
 
-		httpServletResponse.setHeader("Access-Cotrol-Allow-Origin", originPermitida);
-		httpServletResponse.setHeader("Access-Cotrol-Allow-Credentials", "true");
+		httpServletResponse.setHeader("Access-Control-Allow-Origin", originPermitida);
+		httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
 
 		if ("OPTIONS".equals(httpServletRequest.getMethod())
 				&& originPermitida.equals(httpServletRequest.getHeader("Origin"))) {
-			httpServletResponse.setHeader("Access-Cotrol-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
-			httpServletResponse.setHeader("Access-Cotrol-Allow-Headers", "Authorization, Content-Type, Accept");
-			httpServletResponse.setHeader("Access-Cotrol-Allow-Max-Age", "3600");
+			httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
+			httpServletResponse.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+			httpServletResponse.setHeader("Access-Control-Allow-Max-Age", "3600");
 
 			httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 		} else
