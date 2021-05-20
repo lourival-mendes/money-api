@@ -10,7 +10,7 @@ import lombok.Setter;
 @ConfigurationProperties("algamoney")
 public class AlgaMoneyApiProperty {
 
-	private String originPermitida = "http://localhost:4200";
+	private String originPermitida = "https://lourival-mendes-algamoney-ui.herokuapp.com";
 	private final Seguranca seguranca = new Seguranca();
 
 	@Setter
