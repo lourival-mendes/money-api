@@ -14,10 +14,6 @@ CREATE TABLE public.usuario
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.usuario
-    OWNER to postgres;
-
-    
 -- Table: public.permissao
 
 -- DROP TABLE public.permissao;
@@ -32,10 +28,6 @@ CREATE TABLE public.permissao
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.permissao
-    OWNER to postgres;
-    
-    
 -- Table: public.usuario_permissao
 
 -- DROP TABLE public.usuario_permissao;
@@ -58,10 +50,6 @@ CREATE TABLE public.usuario_permissao
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.usuario_permissao
-    OWNER to postgres;
- 
- 
   INSERT INTO usuario (nome, email, senha) values ('Administrador', 'minhavirtude@gmail.com', '$2a$10$MDc27YAC4RJdZTzkfN4dLOPNLGkv.BQMX/JSZ0JeryCfH1mn0p/Gq');
   INSERT INTO usuario (nome, email, senha) values ('Pesquisador', 'lourivalmendes@hotmail.com', '$2a$10$MDc27YAC4RJdZTzkfN4dLOPNLGkv.BQMX/JSZ0JeryCfH1mn0p/Gq');
 

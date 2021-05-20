@@ -28,9 +28,6 @@ CREATE TABLE public.lancamento
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.lancamento
-    OWNER to postgres;
-    
   INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',10.50, 'observação', 'DESPESA', 1, 1);
   INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',11.50, 'observação', 'DESPESA', 2, 2);
   INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',12.50, 'observação', 'DESPESA', 3, 3);
