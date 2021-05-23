@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.algaworks.algamoney.api.config.property.AlgaMoneyApiProperty;
 
-@Profile("oauth-security")
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
@@ -40,10 +38,11 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 		HttpServletRequest req = ((ServletServerHttpRequest) request).getServletRequest();
 		HttpServletResponse res = ((ServletServerHttpResponse) response).getServletResponse();
 
-		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
-
 		String refreshToken = body.getRefreshToken().getValue();
 		adicionarRefreshTokenNoCookie(refreshToken, res, req);
+
+		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
+
 		removerRefreshTokenDoBody(token);
 
 		return body;
