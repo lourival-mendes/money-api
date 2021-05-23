@@ -55,7 +55,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 
 	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletResponse res, HttpServletRequest req) {
 
-		System.out.println("---out"+refreshToken);
+		System.err.println("---out"+refreshToken);
 
 		
 		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
@@ -64,10 +64,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
 		refreshTokenCookie.setMaxAge(2592000);
 		refreshTokenCookie.setValue(refreshToken);
-		
-		System.out.println(refreshTokenCookie);
-		
-		res.addCookie(refreshTokenCookie);
+				res.addCookie(refreshTokenCookie);
 
 	}
 
