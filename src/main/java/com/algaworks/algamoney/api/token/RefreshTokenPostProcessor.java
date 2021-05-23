@@ -40,11 +40,10 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 		HttpServletRequest req = ((ServletServerHttpRequest) request).getServletRequest();
 		HttpServletResponse res = ((ServletServerHttpResponse) response).getServletResponse();
 
-		String refreshToken = body.getRefreshToken().getValue();
-		adicionarRefreshTokenNoCookie(refreshToken, res, req);
-
 		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
 
+		String refreshToken = body.getRefreshToken().getValue();
+		adicionarRefreshTokenNoCookie(refreshToken, res, req);
 		removerRefreshTokenDoBody(token);
 
 		return body;
