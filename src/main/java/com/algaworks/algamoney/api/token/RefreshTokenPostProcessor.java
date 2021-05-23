@@ -55,6 +55,9 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 
 	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletResponse res, HttpServletRequest req) {
 
+		System.out.println("---out"+refreshToken);
+
+		
 		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
 		refreshTokenCookie.setHttpOnly(true);
 		refreshTokenCookie.setSecure(algaMoneyApiProperty.getSeguranca().isEnableHttps());
