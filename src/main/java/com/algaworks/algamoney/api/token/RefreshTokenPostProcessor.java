@@ -20,11 +20,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.algaworks.algamoney.api.config.property.AlgaMoneyApiProperty;
 
-@Profile("oauth-security")
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
-	@Autowired
+	@Autowired 
 	private AlgaMoneyApiProperty algaMoneyApiProperty;
 
 	@Override

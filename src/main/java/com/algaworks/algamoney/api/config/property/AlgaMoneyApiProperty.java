@@ -14,13 +14,10 @@ public class AlgaMoneyApiProperty {
 	private final Seguranca seguranca = new Seguranca();
 
 	@Setter
+	@Getter
 	public static class Seguranca {
 
 		private boolean enableHttps;
-
-		public boolean isEnableHttps() {
-			return enableHttps;
-		}
 
 	}
 
