@@ -72,6 +72,8 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 		public Map<String, String[]> getParameterMap() {
 			ParameterMap<String, String[]> map = new ParameterMap<>(getRequest().getParameterMap());
 			map.put("refresh_token", new String[] { refreshToken });
+			map.put("SameSite", new String[] {"None"});
+
 			map.setLocked(true);
 System.out.println("token final = " + refreshToken);
 			return map;
