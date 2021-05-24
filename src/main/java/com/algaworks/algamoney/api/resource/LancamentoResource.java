@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algaworks.algamoney.api.dto.LancamentoEstatisticaCategoriaDTO;
 import com.algaworks.algamoney.api.event.RecursoAtualizadoEvent;
 import com.algaworks.algamoney.api.event.RecursoCriadoEvent;
 import com.algaworks.algamoney.api.exceptionhandler.AlgaMoneyResponseEntityExceptionHandler.Erro;
@@ -55,6 +56,12 @@ public class LancamentoResource {
 
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
+
+	@GetMapping("/estatisticas/por-categoria/{mesReferecia}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public List<LancamentoEstatisticaCategoriaDTO> listarEstatisticaPorCategoria(@PathVariable String mesReferecia) {
+		return lancamentoRepository.porCategoria(LocalDate.parse(mesReferecia));
+	}
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
