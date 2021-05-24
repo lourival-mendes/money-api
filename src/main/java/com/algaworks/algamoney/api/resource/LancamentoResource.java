@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algamoney.api.dto.LancamentoEstatisticaCategoriaDTO;
+import com.algaworks.algamoney.api.dto.LancamentoEstatisticaDiaDTO;
 import com.algaworks.algamoney.api.event.RecursoAtualizadoEvent;
 import com.algaworks.algamoney.api.event.RecursoCriadoEvent;
 import com.algaworks.algamoney.api.exceptionhandler.AlgaMoneyResponseEntityExceptionHandler.Erro;
@@ -59,8 +60,14 @@ public class LancamentoResource {
 
 	@GetMapping("/estatisticas/por-categoria/{mesReferecia}")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
-	public List<LancamentoEstatisticaCategoriaDTO> listarEstatisticaPorCategoria(@PathVariable String mesReferecia) {
-		return lancamentoRepository.porCategoria(LocalDate.parse(mesReferecia));
+	public List<LancamentoEstatisticaCategoriaDTO> listarEstatisticaCategoria(@PathVariable String mesReferecia) {
+		return lancamentoRepository.listarEstatisticaCategoria(LocalDate.parse(mesReferecia));
+	}
+
+	@GetMapping("/estatisticas/por-dia/{mesReferecia}")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public List<LancamentoEstatisticaDiaDTO> listarEstatisticaDia(@PathVariable String mesReferecia) {
+		return lancamentoRepository.listarEstatisticaDia(LocalDate.parse(mesReferecia));
 	}
 
 	@GetMapping
