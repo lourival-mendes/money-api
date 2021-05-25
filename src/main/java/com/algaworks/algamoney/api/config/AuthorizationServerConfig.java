@@ -14,6 +14,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import com.algaworks.algamoney.api.config.property.AlgaMoneyApiProperty;
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -24,20 +26,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
+	@Autowired
+	private AlgaMoneyApiProperty algaMoneyApiProperty;
+
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
 		String secret = (new BCryptPasswordEncoder()).encode("algaworks");
-		int accessTokenValiditySeconds = 60 * 1;
-		int refreshTokenValiditySeconds = 60 * 60 * 24;
 
 		clients.inMemory().withClient("angular").secret(secret).scopes("read", "write", "erase")
 				.authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(accessTokenValiditySeconds)
-				.refreshTokenValiditySeconds(refreshTokenValiditySeconds).and().withClient("mobile").secret(secret)
-				.scopes("read", "write", "erase").authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(accessTokenValiditySeconds)
-				.refreshTokenValiditySeconds(refreshTokenValiditySeconds);
+				.accessTokenValiditySeconds(algaMoneyApiProperty.getAccessTokenValiditySeconds())
+				.refreshTokenValiditySeconds(algaMoneyApiProperty.getRefreshTokenValiditySeconds()).and()
+				.withClient("mobile").secret(secret).scopes("read", "write", "erase")
+				.authorizedGrantTypes("password", "refresh_token")
+				.accessTokenValiditySeconds(algaMoneyApiProperty.getAccessTokenValiditySeconds())
+				.refreshTokenValiditySeconds(algaMoneyApiProperty.getRefreshTokenValiditySeconds());
+
 	}
 
 	@Override

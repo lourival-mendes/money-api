@@ -11,6 +11,8 @@ import lombok.Setter;
 public class AlgaMoneyApiProperty {
 
 	private String originPermitida;
+	private int accessTokenValiditySeconds;
+	private int refreshTokenValiditySeconds;
 	private final Seguranca seguranca = new Seguranca();
 
 	@Setter
