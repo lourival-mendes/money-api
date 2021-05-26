@@ -3,6 +3,7 @@ package com.algaworks.algamoney.api.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.algamoney.api.model.Lancamento;
@@ -20,6 +21,17 @@ public class LancamentoService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 
+/**
+ * 	@Scheduled(fixedDelay = 1000 * 60 * 60)
+	public void fixedDelay() {
+		System.out.println(">>>>>>> Método fixedDelay sendo executado.");
+	}
+
+	@Scheduled(cron = "0 55 18 * * *")
+	public void cron() {
+		System.out.println(">>>>>>> Método cron sendo executado.");
+	}
+*/
 	public Lancamento save(Lancamento lancamento) {
 
 		Pessoa pessoaLancamento = lancamento.getPessoa();

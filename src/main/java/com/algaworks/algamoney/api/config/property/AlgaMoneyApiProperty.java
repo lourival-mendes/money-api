@@ -14,12 +14,24 @@ public class AlgaMoneyApiProperty {
 	private int accessTokenValiditySeconds;
 	private int refreshTokenValiditySeconds;
 	private final Seguranca seguranca = new Seguranca();
+	private final Mail mail = new Mail();
 
 	@Setter
 	@Getter
 	public static class Seguranca {
 
 		private boolean enableHttps;
+
+	}
+
+	@Setter
+	@Getter
+	public static class Mail {
+
+		private String host;
+		private int port;
+		private String username;
+		private String password;
 
 	}
 
