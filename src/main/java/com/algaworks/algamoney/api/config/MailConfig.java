@@ -20,9 +20,9 @@ public class MailConfig {
 	public JavaMailSender javaMailSender() {
 
 		Properties props = new Properties();
-		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.transport.protocol", "gsmtp");
 		props.put("mail.smtp.auth", true);
-		props.put("mail.smtp.starttls.enable", false);
+		props.put("mail.smtp.startTLS.enable", true);
 		props.put("mail.smtp.connectiontimeout", 1000 * 10);
 
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
