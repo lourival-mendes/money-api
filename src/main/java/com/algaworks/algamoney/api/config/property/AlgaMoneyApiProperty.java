@@ -36,6 +36,10 @@ public class AlgaMoneyApiProperty {
 		private String from;
 		private boolean ativo;
 
+		public void setPort(String port) {
+			this.port = Integer.parseInt(port);
+		}
+
 	}
 
 }
