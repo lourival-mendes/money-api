@@ -29,7 +29,7 @@ public class AlgaMoneyApiProperty {
 	public static class Mail {
 
 		private String host;
-		private String port;
+		private int port;
 		private String username;
 		private String password;
 		private String email;
