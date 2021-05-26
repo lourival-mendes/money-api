@@ -57,6 +57,7 @@ public class Mailer {
 		} catch (Exception e) {
 
 			System.out.println("Problemas com envio de e-mail");
+			throw new RuntimeException(e);
 
 		}
 	}
