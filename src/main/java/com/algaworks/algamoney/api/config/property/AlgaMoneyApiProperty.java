@@ -29,16 +29,12 @@ public class AlgaMoneyApiProperty {
 	public static class Mail {
 
 		private String host;
-		private int port;
+		private String port;
 		private String username;
 		private String password;
 		private String email;
 		private String from;
 		private boolean ativo;
-
-		public void setPort(String port) {
-			this.port = Integer.parseInt(port);
-		}
 
 	}
 
