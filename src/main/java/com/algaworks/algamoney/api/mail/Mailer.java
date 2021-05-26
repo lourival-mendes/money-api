@@ -25,10 +25,8 @@ public class Mailer {
 
 	@EventListener
 	public void test(ApplicationReadyEvent event) {
-	  
-	  this.enviarEmail(Arrays.asList("minhavirtude@gmail.com"),
-	  "Teste de envio de e-mail",
-	  "Mensagem do este de envio de e-mail usando Spring.");
+		
+		System.out.println("Aplicação rodando!");
 	  
 	  }
 	  
@@ -47,6 +45,8 @@ public class Mailer {
 				helper.setText(mensagem, true);
 
 				mailSender.send(mimeMessage);
+
+				System.out.println("Envio de e-mail realizado.");
 
 			} else {
 

@@ -1,11 +1,13 @@
 package com.algaworks.algamoney.api.service;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.algaworks.algamoney.api.mail.Mailer;
 import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.model.Pessoa;
 import com.algaworks.algamoney.api.repository.LancamentoRepository;
@@ -20,13 +22,20 @@ public class LancamentoService {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private Mailer mailer;
+	  
 
-/**
- * 	@Scheduled(fixedDelay = 1000 * 60 * 60)
+  	@Scheduled(fixedDelay = 1000 * 60 * 60)
 	public void fixedDelay() {
-		System.out.println(">>>>>>> Método fixedDelay sendo executado.");
+
+  		this.mailer.enviarEmail(Arrays.asList("minhavirtude@gmail.com"),
+  			  "Teste de envio de e-mail",
+  			  "Mensagem do este de envio de e-mail usando Spring.");
 	}
 
+  	/**
 	@Scheduled(cron = "0 55 18 * * *")
 	public void cron() {
 		System.out.println(">>>>>>> Método cron sendo executado.");
