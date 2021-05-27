@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Contato {
 	private String nome;
 
 	@NotBlank
+	@Email
 	@Size(min = 5, max = 100)
 	private String email;
 
@@ -34,7 +36,7 @@ public class Contato {
 	@Size(min = 10, max = 20)
 	private String telefone;
 
-	@NotNull
+	@NotEmpty
 	@ManyToOne
 	@JoinColumn(name = "id_pessoa")
 	private Pessoa pessoa;
