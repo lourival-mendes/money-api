@@ -1,6 +1,9 @@
 package com.algaworks.algamoney.api.service;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +25,28 @@ public class LancamentoService {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
-	
+
 	@Autowired
 	private Mailer mailer;
-	  
 
-  	@Scheduled(fixedDelay = 1000 * 60 * 60)
+	@Scheduled(fixedDelay = 1000 * 60 * 60)
 	public void fixedDelay() {
 
-  		this.mailer.enviarEmail(Arrays.asList("minhavirtude@gmail.com"),
-  			  "Teste de envio de e-mail",
-  			  "Mensagem do este de envio de e-mail usando Spring.");
+		List<Lancamento> lancamentos = lancamentoRepository.findAll();
+
+		Map<String, Object> variaveis = new HashMap<>();
+		variaveis.put("lancamentos", lancamentos);
+
+		String template = "mail/aviso-lancamentos-vencidos";
+
+		this.mailer.enviarEmail(Arrays.asList("minhavirtude@gmail.com"), "Teste de envio de e-mail", template,
+				variaveis);
 	}
 
-  	/**
-	@Scheduled(cron = "0 55 18 * * *")
-	public void cron() {
-		System.out.println(">>>>>>> Método cron sendo executado.");
-	}
-*/
+	/**
+	 * @Scheduled(cron = "0 55 18 * * *") public void cron() {
+	 *                 System.out.println(">>>>>>> Método cron sendo executado."); }
+	 */
 	public Lancamento save(Lancamento lancamento) {
 
 		Pessoa pessoaLancamento = lancamento.getPessoa();
