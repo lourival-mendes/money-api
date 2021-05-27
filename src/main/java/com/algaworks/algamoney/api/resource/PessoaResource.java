@@ -5,10 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -29,6 +27,7 @@ import com.algaworks.algamoney.api.event.RecursoCriadoEvent;
 import com.algaworks.algamoney.api.model.Pessoa;
 import com.algaworks.algamoney.api.repository.PessoaRepository;
 import com.algaworks.algamoney.api.repository.filter.PessoaFilter;
+import com.algaworks.algamoney.api.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -38,6 +37,9 @@ public class PessoaResource {
 	private PessoaRepository pessoaRepository;
 
 	@Autowired
+	private PessoaService pessoaService;
+
+	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
 
 	@GetMapping
@@ -45,7 +47,7 @@ public class PessoaResource {
 	public Page<Pessoa> pesquisar(PessoaFilter pessoaFilter, Pageable pageable) {
 		return pessoaRepository.filtrar(pessoaFilter, pageable);
 	}
-		
+
 	@GetMapping("/listar")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public List<Pessoa> listar() {
@@ -56,7 +58,7 @@ public class PessoaResource {
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
 
-		Pessoa pessoaCriada = pessoaRepository.save(pessoa);
+		Pessoa pessoaCriada = pessoaService.save(pessoa);
 		applicationEventPublisher.publishEvent(new RecursoCriadoEvent(this, response, pessoaCriada.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaCriada);
 
@@ -67,11 +69,7 @@ public class PessoaResource {
 	public ResponseEntity<Pessoa> atualizar(@Valid @RequestBody Pessoa pessoa, @PathVariable Long id,
 			HttpServletResponse response) {
 
-		Pessoa pessoaSalva = pessoaRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
-
-		BeanUtils.copyProperties(pessoa, pessoaSalva, "id");
-
-		Pessoa pessoaAtualizada = pessoaRepository.save(pessoaSalva);
+		Pessoa pessoaAtualizada = pessoaService.update(id, pessoa);
 		applicationEventPublisher.publishEvent(new RecursoAtualizadoEvent(this, response));
 		return ResponseEntity.status(HttpStatus.OK).body(pessoaAtualizada);
 
@@ -82,10 +80,7 @@ public class PessoaResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void atualizarAtivo(@RequestBody Boolean ativo, @PathVariable Long id, HttpServletResponse response) {
 
-		Pessoa pessoaSalva = pessoaRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
-
-		pessoaSalva.setAtivo(ativo);
-		pessoaRepository.save(pessoaSalva);
+		pessoaService.updateAtivo(id, ativo);
 
 		applicationEventPublisher.publishEvent(new RecursoAtualizadoEvent(this, response));
 
@@ -94,8 +89,8 @@ public class PessoaResource {
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
 	public ResponseEntity<Pessoa> buscarPeloId(@PathVariable Long id) {
-		Pessoa pessoaSalva = pessoaRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
-		return pessoaSalva.equals(null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(pessoaSalva);
+		Pessoa pessoa = pessoaService.findById(id);
+		return pessoa.equals(null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(pessoa);
 	}
 
 	@DeleteMapping("/{id}")
