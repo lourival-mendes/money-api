@@ -1,8 +1,10 @@
 package com.algaworks.algamoney.api.mail;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.mail.internet.MimeMessage;
 
@@ -16,6 +18,8 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import com.algaworks.algamoney.api.config.property.AlgaMoneyApiProperty;
+import com.algaworks.algamoney.api.model.Lancamento;
+import com.algaworks.algamoney.api.model.Usuario;
 
 @Component
 public class Mailer {
@@ -33,6 +37,17 @@ public class Mailer {
 	public void test(ApplicationReadyEvent event) {
 
 		System.out.println("Aplicação rodando!");
+
+	}
+
+	public void avisarSobreLancamentosVencidos(List<Lancamento> lancamentosVencidos, List<Usuario> usuarios, String template) {
+
+		Map<String, Object> variaveis = new HashMap<>();
+		variaveis.put("lancamentos", lancamentosVencidos);
+
+		List<String> destinatarios = usuarios.stream().map(usuario -> usuario.getEmail()).collect(Collectors.toList());
+		
+		this.enviarEmail(destinatarios, "Lançamentos Vencidos", template, variaveis);
 
 	}
 

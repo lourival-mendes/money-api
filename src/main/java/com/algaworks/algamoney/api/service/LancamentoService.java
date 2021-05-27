@@ -1,6 +1,6 @@
 package com.algaworks.algamoney.api.service;
 
-import java.util.Arrays;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import com.algaworks.algamoney.api.mail.Mailer;
 import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.model.Pessoa;
+import com.algaworks.algamoney.api.model.Usuario;
 import com.algaworks.algamoney.api.repository.LancamentoRepository;
 import com.algaworks.algamoney.api.repository.PessoaRepository;
+import com.algaworks.algamoney.api.repository.UsuarioRepository;
 import com.algaworks.algamoney.api.service.exception.PessoaInexistenteOuInativaException;
 
 @Service
@@ -27,26 +29,33 @@ public class LancamentoService {
 	private PessoaRepository pessoaRepository;
 
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
 	private Mailer mailer;
 
-	@Scheduled(fixedDelay = 1000 * 60 * 60)
-	public void fixedDelay() {
+	@Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
+	public void avisarSobreLancamentosVencidos() {
 
-		List<Lancamento> lancamentos = lancamentoRepository.findAll();
+		List<Lancamento> lancamentosVencidos = lancamentoRepository
+				.findByDataVencimentoLessThanEqualAndDataPagamentoIsNull(LocalDate.now());
 
-		Map<String, Object> variaveis = new HashMap<>();
-		variaveis.put("lancamentos", lancamentos);
+		if (!lancamentosVencidos.isEmpty()) {
 
-		String template = "mail/aviso-lancamentos-vencidos";
+			List<Usuario> usuarios = usuarioRepository.findByPermissoesDescricao("ROLE_PESQUISAR_LANCAMENTO");
 
-		this.mailer.enviarEmail(Arrays.asList("minhavirtude@gmail.com"), "Teste de envio de e-mail", template,
-				variaveis);
+			Map<String, Object> variaveis = new HashMap<>();
+			variaveis.put("lancamentos", lancamentosVencidos);
+
+			String template = "mail/aviso-lancamentos-vencidos";
+
+			this.mailer.avisarSobreLancamentosVencidos(lancamentosVencidos, usuarios, template);
+		} else {
+			System.out.println("Não há lançamentos vencidos. Nenhum e-mail foi enviado.");
+		}
+
 	}
 
-	/**
-	 * @Scheduled(cron = "0 55 18 * * *") public void cron() {
-	 *                 System.out.println(">>>>>>> Método cron sendo executado."); }
-	 */
 	public Lancamento save(Lancamento lancamento) {
 
 		Pessoa pessoaLancamento = lancamento.getPessoa();
