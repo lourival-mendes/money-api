@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ import com.algaworks.algamoney.api.service.exception.PessoaInexistenteOuInativaE
 @Service
 public class LancamentoService {
 
+	private static final Logger logger = LoggerFactory.getLogger(LancamentoService.class);
+
 	@Autowired
 	private LancamentoRepository lancamentoRepository;
 
@@ -37,22 +41,40 @@ public class LancamentoService {
 	@Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
 	public void avisarSobreLancamentosVencidos() {
 
+		if (logger.isDebugEnabled())
+			logger.debug("Preparando envio de e-mails de avisos de lançamentos vencidos.");
+
 		List<Lancamento> lancamentosVencidos = lancamentoRepository
 				.findByDataVencimentoLessThanEqualAndDataPagamentoIsNull(LocalDate.now());
 
-		if (!lancamentosVencidos.isEmpty()) {
+		if (lancamentosVencidos.isEmpty()) {
 
-			List<Usuario> usuarios = usuarioRepository.findByPermissoesDescricao("ROLE_PESQUISAR_LANCAMENTO");
+			logger.info("Não há lançamentos vencidos. Nenhum e-mail foi enviado.");
+			return;
 
-			Map<String, Object> variaveis = new HashMap<>();
-			variaveis.put("lancamentos", lancamentosVencidos);
-
-			String template = "mail/aviso-lancamentos-vencidos";
-
-			this.mailer.avisarSobreLancamentosVencidos(lancamentosVencidos, usuarios, template);
-		} else {
-			System.out.println("Não há lançamentos vencidos. Nenhum e-mail foi enviado.");
 		}
+
+		logger.info("Existem {} lançamento(s) vencido(s).", lancamentosVencidos.size());
+
+		List<Usuario> usuarios = usuarioRepository.findByPermissoesDescricao("ROLE_PESQUISAR_LANCAMENTO");
+
+		if (usuarios.isEmpty()) {
+
+			logger.warn("Não há usuário com permissão para pesquisa de lançamento. Nenhum e-mail foi enviado.");
+			return;
+
+		}
+
+		logger.info("Existe(m) {} destinatário(s).", usuarios.size());
+
+		Map<String, Object> variaveis = new HashMap<>();
+		variaveis.put("lancamentos", lancamentosVencidos);
+
+		String template = "mail/aviso-lancamentos-vencidos";
+
+		this.mailer.avisarSobreLancamentosVencidos(lancamentosVencidos, usuarios, template);
+
+		logger.info("E-mails de avisos de lançamentos vencidos realizados.");
 
 	}
 
