@@ -21,6 +21,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -68,6 +69,7 @@ public class Lancamento {
 	@ManyToOne
 	private Categoria categoria;
 
+	@JsonIgnoreProperties("contatos")
 	@NotNull
 	@JoinColumn(name = "id_pessoa")
 	@ManyToOne
