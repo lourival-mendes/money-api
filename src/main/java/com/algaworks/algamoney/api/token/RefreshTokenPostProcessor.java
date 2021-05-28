@@ -69,7 +69,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 			refreshTokenCookie.setSameSite("None");
 		}
 		
-		String cookie = "refreshToken=" + refreshToken + "; HttpOnly; SameSite=None; Max-Age="+LocalDate.now().plusDays(1); 
+		String cookie = "refreshToken=" + refreshToken + "; HttpOnly; SameSite=strict; Max-Age="+LocalDate.now().plusDays(1); 
 		
 		res.setHeader("Set-Cookie", cookie);
 
