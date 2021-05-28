@@ -1,5 +1,7 @@
 package com.algaworks.algamoney.api.token;
 
+import java.time.LocalDate;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,9 +69,11 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 			refreshTokenCookie.setSameSite("None");
 		}
 		
-		res.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=None");
+		String cookie = "refreshToken=" + refreshToken + "; HttpOnly; SameSite=None; Max-Age="+LocalDate.now().plusDays(1); 
+		
+		res.setHeader("Set-Cookie", cookie);
 
-		res.addCookie(refreshTokenCookie);
+		//res.addCookie(refreshTokenCookie);
 
 	}
 
