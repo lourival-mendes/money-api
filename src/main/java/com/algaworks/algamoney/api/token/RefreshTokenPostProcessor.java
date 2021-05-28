@@ -1,7 +1,5 @@
 package com.algaworks.algamoney.api.token;
 
-import java.time.LocalDate;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,9 +18,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.algaworks.algamoney.api.config.property.AlgaMoneyApiProperty;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
@@ -59,35 +54,21 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 
 	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletResponse res, HttpServletRequest req) {
 
-		Biscoito refreshTokenCookie = new Biscoito("refreshToken", refreshToken);
+		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
 		refreshTokenCookie.setHttpOnly(true);
 		refreshTokenCookie.setSecure(algaMoneyApiProperty.getSeguranca().isEnableHttps());
-		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
+		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token".concat("SameSite=Strict;"));
 		refreshTokenCookie.setMaxAge(2592000);
 		if (algaMoneyApiProperty.getSeguranca().isEnableHttps()) {
 			refreshTokenCookie.setDomain("lourival-mendes-algamoney-api.herokuapp.com");
-			refreshTokenCookie.setSameSite("None");
 		}
-		
-		String cookie = "refreshToken=" + refreshToken + "; HttpOnly; SameSite=strict; Max-Age="+LocalDate.now().plusDays(1); 
-		
-		res.setHeader("Set-Cookie", cookie);
 
-		//res.addCookie(refreshTokenCookie);
+		// String cookie = "refreshToken=" + refreshToken + "; HttpOnly; SameSite=lax;
+		// Max-Age="+LocalDate.now().plusDays(10);
 
-	}
+		// res.setHeader("Set-Cookie", cookie);
 
-	@Getter
-	@Setter
-	private class Biscoito extends Cookie {
-
-		private static final long serialVersionUID = 1L;
-
-		private String sameSite;
-
-		public Biscoito(String name, String value) {
-			super(name, value);
-		}
+		res.addCookie(refreshTokenCookie);
 
 	}
 
