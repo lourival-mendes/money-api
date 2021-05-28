@@ -38,22 +38,18 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 				}
 			}
 
+			System.out.println("Existe cookie dentro? ");
+			System.out.println(req.getCookies());
+			System.out.println("Existe cookie dentro? ");
+
 		} else {
 			System.out.println("Existe cookie? ");
-			System.out.println(request.toString());
+			System.out.println(req.getCookies());
 			System.out.println("Existe cookie? ");
 		}
 
 		chain.doFilter(req, response);
 
-	}
-
-	@Override
-	public void destroy() {
-	}
-
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
 	}
 
 	static class MyServletRequestWrapper extends HttpServletRequestWrapper {
