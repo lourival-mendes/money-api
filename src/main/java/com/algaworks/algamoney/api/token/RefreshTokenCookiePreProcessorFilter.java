@@ -38,6 +38,9 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 				}
 			}
 
+		} else {
+			System.out.println("Existe cookie? ");
+			System.out.println(req.getCookies());
 		}
 
 		chain.doFilter(req, response);
