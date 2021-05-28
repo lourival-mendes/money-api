@@ -60,7 +60,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
 		refreshTokenCookie.setMaxAge(2592000);
 		if(algaMoneyApiProperty.getSeguranca().isEnableHttps()) {
-			refreshTokenCookie.setDomain(".lourival-mendes-algamoney-ui.herokuapp.com");
+			refreshTokenCookie.setDomain("lourival-mendes-algamoney-api.herokuapp.com");
 		}
 		
 		res.addCookie(refreshTokenCookie);
