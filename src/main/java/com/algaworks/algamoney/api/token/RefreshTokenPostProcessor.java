@@ -66,6 +66,8 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 			refreshTokenCookie.setDomain("lourival-mendes-algamoney-api.herokuapp.com");
 			refreshTokenCookie.setSameSite("None");
 		}
+		
+		res.setHeader("Set-Cookie", "SameSite=None");
 
 		res.addCookie(refreshTokenCookie);
 
