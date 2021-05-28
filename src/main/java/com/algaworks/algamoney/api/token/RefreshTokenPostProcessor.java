@@ -67,7 +67,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 			refreshTokenCookie.setSameSite("None");
 		}
 		
-		res.setHeader("Set-Cookie", "SameSite=None");
+		res.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=None");
 
 		res.addCookie(refreshTokenCookie);
 
