@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -38,14 +37,6 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 				}
 			}
 
-			System.out.println("Existe cookie dentro? ");
-			System.out.println(req.getCookies());
-			System.out.println("Existe cookie dentro? ");
-
-		} else {
-			System.out.println("Existe cookie? ");
-			System.out.println(req.getCookies());
-			System.out.println("Existe cookie? ");
 		}
 
 		chain.doFilter(req, response);
