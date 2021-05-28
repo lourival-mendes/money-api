@@ -19,10 +19,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.algaworks.algamoney.api.config.property.AlgaMoneyApiProperty;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
-	@Autowired 
+	@Autowired
 	private AlgaMoneyApiProperty algaMoneyApiProperty;
 
 	@Override
@@ -54,16 +57,31 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 
 	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletResponse res, HttpServletRequest req) {
 
-		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
+		Biscoito refreshTokenCookie = new Biscoito("refreshToken", refreshToken);
 		refreshTokenCookie.setHttpOnly(true);
 		refreshTokenCookie.setSecure(algaMoneyApiProperty.getSeguranca().isEnableHttps());
 		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
 		refreshTokenCookie.setMaxAge(2592000);
-		if(algaMoneyApiProperty.getSeguranca().isEnableHttps()) {
+		if (algaMoneyApiProperty.getSeguranca().isEnableHttps()) {
 			refreshTokenCookie.setDomain("lourival-mendes-algamoney-api.herokuapp.com");
+			refreshTokenCookie.setSameSite("None");
 		}
-		
+
 		res.addCookie(refreshTokenCookie);
+
+	}
+
+	@Getter
+	@Setter
+	private class Biscoito extends Cookie {
+
+		private static final long serialVersionUID = 1L;
+
+		private String sameSite;
+
+		public Biscoito(String name, String value) {
+			super(name, value);
+		}
 
 	}
 
