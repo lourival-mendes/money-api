@@ -1,6 +1,7 @@
 package com.algaworks.algamoney.api.service;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +9,17 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.algaworks.algamoney.api.exceptionhandler.AlgaMoneyResponseEntityExceptionHandler.Erro;
 import com.algaworks.algamoney.api.mail.Mailer;
 import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.model.Pessoa;
@@ -37,6 +45,9 @@ public class LancamentoService {
 
 	@Autowired
 	private Mailer mailer;
+
+	@Autowired
+	private MessageSource messageSource;
 
 	@Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
 	public void avisarSobreLancamentosVencidos() {
@@ -90,4 +101,32 @@ public class LancamentoService {
 
 	}
 
+	public Lancamento update(Long id, Lancamento lancamento) {
+
+		Lancamento lancamentoSalvo = lancamentoRepository.findById(id)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
+
+		Long idPessoa = lancamento.getPessoa().getId();
+
+		Optional<Pessoa> pessoaSalva = pessoaRepository.findById(idPessoa);
+
+		if (pessoaSalva.isEmpty() || pessoaSalva.get().isInativo())
+			throw new PessoaInexistenteOuInativaException();
+
+		return lancamentoRepository.save(lancamento);
+
+	}
+
+	@ExceptionHandler({ PessoaInexistenteOuInativaException.class })
+	public ResponseEntity<Object> PessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex) {
+
+		String mensagemUsuario = messageSource.getMessage("recurso.pessoa-inexistente-ou-inativa", null,
+				LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return ResponseEntity.badRequest().body(erros);
+
+	}
 }
