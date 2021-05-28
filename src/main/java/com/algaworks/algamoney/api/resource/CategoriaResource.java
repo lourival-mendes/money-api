@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,6 +25,7 @@ import com.algaworks.algamoney.api.event.RecursoAtualizadoEvent;
 import com.algaworks.algamoney.api.event.RecursoCriadoEvent;
 import com.algaworks.algamoney.api.model.Categoria;
 import com.algaworks.algamoney.api.repository.CategoriaRepository;
+import com.algaworks.algamoney.api.service.CategoriaService;
 
 @RestController
 @RequestMapping("/categorias")
@@ -33,6 +33,9 @@ public class CategoriaResource {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+
+	@Autowired
+	private CategoriaService categoriaService;
 
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
@@ -57,12 +60,8 @@ public class CategoriaResource {
 	public ResponseEntity<Categoria> atualizar(@Valid @RequestBody Categoria categoria, @PathVariable Long id,
 			HttpServletResponse response) {
 
-		Categoria categoriaSalva = this.categoriaRepository.findById(id)
-				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+		Categoria categoriaAtualizada = categoriaService.update(id, categoria);
 
-		BeanUtils.copyProperties(categoria, categoriaSalva, "id");
-
-		Categoria categoriaAtualizada = categoriaRepository.save(categoriaSalva);
 		applicationEventPublisher.publishEvent(new RecursoAtualizadoEvent(this, response));
 		return ResponseEntity.status(HttpStatus.OK).body(categoriaAtualizada);
 
