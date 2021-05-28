@@ -40,7 +40,8 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 
 		} else {
 			System.out.println("Existe cookie? ");
-			System.out.println(req);
+			System.out.println(request);
+			System.out.println("Existe cookie? ");
 		}
 
 		chain.doFilter(req, response);
