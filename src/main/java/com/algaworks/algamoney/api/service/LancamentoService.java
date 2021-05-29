@@ -13,7 +13,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,7 @@ import com.algaworks.algamoney.api.model.Usuario;
 import com.algaworks.algamoney.api.repository.LancamentoRepository;
 import com.algaworks.algamoney.api.repository.PessoaRepository;
 import com.algaworks.algamoney.api.repository.UsuarioRepository;
+import com.algaworks.algamoney.api.service.exception.LancamentoInexistenteException;
 import com.algaworks.algamoney.api.service.exception.PessoaInexistenteOuInativaException;
 import com.algaworks.algamoney.api.storage.S3;
 
@@ -107,10 +107,10 @@ public class LancamentoService {
 
 	private void validarPessoa(Lancamento lancamento) {
 
-		Pessoa pessoaLancamento = lancamento.getPessoa();
-		Optional<Pessoa> pessoaSalva = pessoaRepository.findById(pessoaLancamento.getId());
+		Long idPessoa = lancamento.getPessoa().getId();
+		Optional<Pessoa> pessoa = pessoaRepository.findById(idPessoa);
 
-		if (pessoaSalva.isEmpty() || pessoaSalva.get().isInativo())
+		if (pessoa.isEmpty() || pessoa.get().isInativo())
 			throw new PessoaInexistenteOuInativaException();
 
 	}
@@ -118,18 +118,13 @@ public class LancamentoService {
 	public Lancamento update(Long id, Lancamento lancamento) {
 
 		Lancamento lancamentoSalvo = lancamentoRepository.findById(id)
-				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+				.orElseThrow(() -> new LancamentoInexistenteException());
 
 		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
 
-		Long idPessoa = lancamento.getPessoa().getId();
+		validarPessoa(lancamentoSalvo);
 
-		Optional<Pessoa> pessoaSalva = pessoaRepository.findById(idPessoa);
-
-		if (pessoaSalva.isEmpty() || pessoaSalva.get().isInativo())
-			throw new PessoaInexistenteOuInativaException();
-
-		return lancamentoRepository.save(lancamento);
+		return lancamentoRepository.save(lancamentoSalvo);
 
 	}
 
@@ -138,8 +133,25 @@ public class LancamentoService {
 
 		String mensagemUsuario = messageSource.getMessage("recurso.pessoa-inexistente-ou-inativa", null,
 				LocaleContextHolder.getLocale());
+
 		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+
+		return ResponseEntity.badRequest().body(erros);
+
+	}
+
+	@ExceptionHandler({ LancamentoInexistenteException.class })
+	public ResponseEntity<Object> LancamentoInexistenteException(LancamentoInexistenteException ex) {
+
+		String mensagemUsuario = messageSource.getMessage("recurso.lancamento-inexistente", null,
+				LocaleContextHolder.getLocale());
+
+		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+
 		return ResponseEntity.badRequest().body(erros);
 
 	}
