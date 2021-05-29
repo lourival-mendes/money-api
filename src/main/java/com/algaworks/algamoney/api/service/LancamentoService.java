@@ -17,6 +17,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.algaworks.algamoney.api.exceptionhandler.AlgaMoneyResponseEntityExceptionHandler.Erro;
@@ -28,6 +29,7 @@ import com.algaworks.algamoney.api.repository.LancamentoRepository;
 import com.algaworks.algamoney.api.repository.PessoaRepository;
 import com.algaworks.algamoney.api.repository.UsuarioRepository;
 import com.algaworks.algamoney.api.service.exception.PessoaInexistenteOuInativaException;
+import com.algaworks.algamoney.api.storage.S3;
 
 @Service
 public class LancamentoService {
@@ -48,6 +50,9 @@ public class LancamentoService {
 
 	@Autowired
 	private MessageSource messageSource;
+
+	@Autowired
+	private S3 s3;
 
 	@Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
 	public void avisarSobreLancamentosVencidos() {
@@ -91,13 +96,22 @@ public class LancamentoService {
 
 	public Lancamento save(Lancamento lancamento) {
 
+		validarPessoa(lancamento);
+
+		if (StringUtils.hasText(lancamento.getAnexo()))
+			s3.salvar(lancamento.getAnexo());
+
+		return lancamentoRepository.save(lancamento);
+
+	}
+
+	private void validarPessoa(Lancamento lancamento) {
+
 		Pessoa pessoaLancamento = lancamento.getPessoa();
 		Optional<Pessoa> pessoaSalva = pessoaRepository.findById(pessoaLancamento.getId());
 
 		if (pessoaSalva.isEmpty() || pessoaSalva.get().isInativo())
 			throw new PessoaInexistenteOuInativaException();
-
-		return lancamentoRepository.save(lancamento);
 
 	}
 

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -74,5 +75,10 @@ public class Lancamento {
 	@JoinColumn(name = "id_pessoa")
 	@ManyToOne
 	private Pessoa pessoa;
+
+	private String anexo;
+
+	@Transient
+	private String urlAnexo;
 
 }
