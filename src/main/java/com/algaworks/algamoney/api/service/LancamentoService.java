@@ -120,9 +120,16 @@ public class LancamentoService {
 		Lancamento lancamentoSalvo = lancamentoRepository.findById(id)
 				.orElseThrow(() -> new LancamentoInexistenteException());
 
-		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
-
 		validarPessoa(lancamentoSalvo);
+
+		if (!StringUtils.hasText(lancamento.getAnexo()) && StringUtils.hasText(lancamentoSalvo.getAnexo()))
+			s3.remover(lancamentoSalvo.getAnexo());
+		else if (StringUtils.hasText(lancamento.getAnexo())
+				&& !lancamento.getAnexo().equals(lancamentoSalvo.getAnexo())
+				)
+			s3.substituir(lancamentoSalvo.getAnexo(), lancamento.getAnexo());
+
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
 
 		return lancamentoRepository.save(lancamentoSalvo);
 
