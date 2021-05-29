@@ -1,6 +1,5 @@
 package com.algaworks.algamoney.api.resource;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.algaworks.algamoney.api.dto.AnexoDTO;
 import com.algaworks.algamoney.api.dto.LancamentoEstatisticaCategoriaDTO;
 import com.algaworks.algamoney.api.dto.LancamentoEstatisticaDiaDTO;
 import com.algaworks.algamoney.api.dto.LancamentoEstatisticaPessoaDTO;
@@ -39,6 +39,7 @@ import com.algaworks.algamoney.api.repository.LancamentoRepository;
 import com.algaworks.algamoney.api.repository.filter.LancamentoFilter;
 import com.algaworks.algamoney.api.repository.projection.LancamentoResumo;
 import com.algaworks.algamoney.api.service.LancamentoService;
+import com.algaworks.algamoney.api.storage.S3;
 
 @RestController
 @RequestMapping("/lancamentos")
@@ -53,15 +54,15 @@ public class LancamentoResource {
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;
 
+	@Autowired
+	private S3 s3;
+
 	@PostMapping("/anexo")
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and #oauth2.hasScope('write')")
-	public String uploadAnexo(@RequestParam MultipartFile anexo) throws IOException {
+	public AnexoDTO uploadAnexo(@RequestParam MultipartFile anexo) throws IOException {
 
-		FileOutputStream out = new FileOutputStream("C:/Users/Helena/Desktop/anexo-" + anexo.getOriginalFilename());
-		out.write(anexo.getBytes());
-		out.close();
-
-		return "ok";
+		String nome = s3.salvarTemporariamente(anexo);
+		return new AnexoDTO(nome, s3.configurarUrl(nome));
 
 	}
 

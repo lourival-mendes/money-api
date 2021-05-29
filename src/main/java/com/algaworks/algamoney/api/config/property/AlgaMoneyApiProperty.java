@@ -15,6 +15,7 @@ public class AlgaMoneyApiProperty {
 	private int refreshTokenValiditySeconds;
 	private final Seguranca seguranca = new Seguranca();
 	private final Mail mail = new Mail();
+	private final S3 s3 = new S3();
 
 	@Setter
 	@Getter
@@ -35,6 +36,16 @@ public class AlgaMoneyApiProperty {
 		private String email;
 		private String from;
 		private boolean ativo;
+
+	}
+
+	@Setter
+	@Getter
+	public static class S3 {
+
+		private String accessKeyId;
+		private String secretAccessKey;
+		private String bucket="lourival-mendes-files";
 
 	}
 
