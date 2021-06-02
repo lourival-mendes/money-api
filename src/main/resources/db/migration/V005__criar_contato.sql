@@ -20,3 +20,22 @@ CREATE TABLE public.contato
 TABLESPACE pg_default;
 
   INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Robson', 'robson@robson.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Vânia', 'vania@vania.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Helena', 'helena@helena.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Lourival de Oliveira', 'lourival@lourival.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('José Neto', 'jose@jose.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Juscelina', 'Juscelina@Juscelina.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Adriana', 'drika@drika.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Mônica', 'monica@monica.com', '61 99999-9999', 1);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Luiz', 'Luiz@Luiz.com', '61 99999-9999', 1);
+
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Robson', 'robson@robson.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Vânia', 'vania@vania.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Helena', 'helena@helena.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Lourival de Oliveira', 'lourival@lourival.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('José Neto', 'jose@jose.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Juscelina', 'Juscelina@Juscelina.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Adriana', 'drika@drika.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Mônica', 'monica@monica.com', '61 99999-9999', 2);
+  INSERT INTO contato (nome, email, telefone, id_pessoa) values ('Luiz', 'Luiz@Luiz.com', '61 99999-9999', 2);
+  
