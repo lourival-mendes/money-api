@@ -13,8 +13,6 @@ public class LancamentoAnexoListener {
 	@PostLoad
 	public void PostLoad(Lancamento lancamento) {
 
-		System.out.println(lancamento);
-		
 		if (StringUtils.hasText(lancamento.getAnexo())) {
 
 			S3 s3 = AlgamoneyApiApplication.getBean(S3.class);
