@@ -103,8 +103,8 @@ public class LancamentoService {
 
 		Lancamento lancamentoSalvo = lancamentoRepository.save(lancamento);
 
-		if (StringUtils.hasText(lancamentoSalvo.getAnexo()))
-			lancamentoSalvo.setUrlAnexo(s3.configurarUrl(lancamentoSalvo.getAnexo()));
+//		if (StringUtils.hasText(lancamentoSalvo.getAnexo()))
+//			lancamentoSalvo.setUrlAnexo(s3.configurarUrl(lancamentoSalvo.getAnexo()));
 
 		return lancamentoSalvo;
 
@@ -133,7 +133,7 @@ public class LancamentoService {
 				&& !lancamento.getAnexo().equals(lancamentoSalvo.getAnexo()))
 			s3.substituir(lancamentoSalvo.getAnexo(), lancamento.getAnexo());
 
-		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id", "urlAnexo");
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "id");
 
 		return lancamentoRepository.save(lancamentoSalvo);
 

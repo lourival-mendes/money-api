@@ -81,6 +81,7 @@ public class Lancamento {
 
 	private String anexo;
 
+	@Column(name = "url_anexo")
 	private String urlAnexo;
 
 }

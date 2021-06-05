@@ -1,7 +1,5 @@
 package com.algaworks.algamoney.api.repository.listener;
 
-import javax.persistence.PostLoad;
-
 import org.springframework.util.StringUtils;
 
 import com.algaworks.algamoney.api.AlgamoneyApiApplication;
@@ -10,7 +8,7 @@ import com.algaworks.algamoney.api.storage.S3;
 
 public class LancamentoAnexoListener {
 
-	@PostLoad
+	// @PostLoad
 	public void PostLoad(Lancamento lancamento) {
 
 		if (StringUtils.hasText(lancamento.getAnexo())) {
