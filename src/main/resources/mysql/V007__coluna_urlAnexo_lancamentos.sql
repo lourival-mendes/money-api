@@ -1,1 +1,1 @@
-ALTER TABLE `lancamento` ADD COLUMN urlAnexo VARCHAR(200);
+ALTER TABLE `lancamento` ADD COLUMN url_anexo VARCHAR(200);
