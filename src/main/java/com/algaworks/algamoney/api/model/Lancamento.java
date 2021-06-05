@@ -81,7 +81,6 @@ public class Lancamento {
 
 	private String anexo;
 
-	@Transient
 	private String urlAnexo;
 
 }
