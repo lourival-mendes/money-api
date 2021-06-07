@@ -1,18 +1,30 @@
 package com.algaworks.algamoney.api.service;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.model.Pessoa;
+import com.algaworks.algamoney.api.repository.LancamentoRepository;
 import com.algaworks.algamoney.api.repository.PessoaRepository;
+import com.algaworks.algamoney.api.service.exception.PessoaComLancamentoException;
 
 @Service
 public class PessoaService {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+
+	@Autowired
+	private LancamentoRepository lancamentoRepository;
+
+	@Autowired
+	private MessageSource messageSource;
 
 	public Pessoa save(Pessoa pessoa) {
 
@@ -48,6 +60,19 @@ public class PessoaService {
 		pessoa.setAtivo(ativo);
 
 		pessoaRepository.save(pessoa);
+
+	}
+
+	public void deleteById(Long id) {
+
+		Pessoa pessoaSalva = this.findById(id);
+
+		List<Lancamento> lancamentos = lancamentoRepository.findByPessoa(pessoaSalva);
+
+		if (lancamentos.isEmpty()) {
+			pessoaRepository.delete(pessoaSalva);
+		} else
+			throw new PessoaComLancamentoException();
 
 	}
 

@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.algaworks.algamoney.api.service.exception.LancamentoInexistenteException;
+import com.algaworks.algamoney.api.service.exception.PessoaComLancamentoException;
+import com.algaworks.algamoney.api.service.exception.PessoaInexistenteOuInativaException;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -95,6 +99,50 @@ public class AlgaMoneyResponseEntityExceptionHandler extends ResponseEntityExcep
 				LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+
+	}
+
+	@ExceptionHandler({ PessoaComLancamentoException.class })
+	public ResponseEntity<Object> PessoaComLancamentoException(PessoaComLancamentoException ex, WebRequest request) {
+
+		String mensagemUsuario = messageSource.getMessage("recurso.pessoa-com-lancamento", null,
+				LocaleContextHolder.getLocale());
+
+		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+
+	}
+
+	@ExceptionHandler({ PessoaInexistenteOuInativaException.class })
+	public ResponseEntity<Object> PessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex,
+			WebRequest request) {
+
+		String mensagemUsuario = messageSource.getMessage("recurso.pessoa-inexistente-ou-inativa", null,
+				LocaleContextHolder.getLocale());
+
+		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+
+	}
+
+	@ExceptionHandler({ LancamentoInexistenteException.class })
+	public ResponseEntity<Object> LancamentoInexistenteException(LancamentoInexistenteException ex,
+			WebRequest request) {
+
+		String mensagemUsuario = messageSource.getMessage("recurso.lancamento-inexistente", null,
+				LocaleContextHolder.getLocale());
+
+		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
+
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 
 	}

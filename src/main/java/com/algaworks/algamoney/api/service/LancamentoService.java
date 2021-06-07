@@ -1,7 +1,6 @@
 package com.algaworks.algamoney.api.service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,14 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.algaworks.algamoney.api.exceptionhandler.AlgaMoneyResponseEntityExceptionHandler.Erro;
 import com.algaworks.algamoney.api.mail.Mailer;
 import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.model.Pessoa;
@@ -103,9 +98,6 @@ public class LancamentoService {
 
 		Lancamento lancamentoSalvo = lancamentoRepository.save(lancamento);
 
-//		if (StringUtils.hasText(lancamentoSalvo.getAnexo()))
-//			lancamentoSalvo.setUrlAnexo(s3.configurarUrl(lancamentoSalvo.getAnexo()));
-
 		return lancamentoSalvo;
 
 	}
@@ -139,31 +131,4 @@ public class LancamentoService {
 
 	}
 
-	@ExceptionHandler({ PessoaInexistenteOuInativaException.class })
-	public ResponseEntity<Object> PessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex) {
-
-		String mensagemUsuario = messageSource.getMessage("recurso.pessoa-inexistente-ou-inativa", null,
-				LocaleContextHolder.getLocale());
-
-		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
-
-		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-
-		return ResponseEntity.badRequest().body(erros);
-
-	}
-
-	@ExceptionHandler({ LancamentoInexistenteException.class })
-	public ResponseEntity<Object> LancamentoInexistenteException(LancamentoInexistenteException ex) {
-
-		String mensagemUsuario = messageSource.getMessage("recurso.lancamento-inexistente", null,
-				LocaleContextHolder.getLocale());
-
-		String mensagemDesenvolvedor = Optional.ofNullable(ex.getCause()).orElse(ex).toString();
-
-		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-
-		return ResponseEntity.badRequest().body(erros);
-
-	}
 }

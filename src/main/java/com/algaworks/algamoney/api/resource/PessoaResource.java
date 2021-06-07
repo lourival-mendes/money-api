@@ -97,7 +97,9 @@ public class PessoaResource {
 	@PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removerPeloId(@PathVariable Long id) {
-		pessoaRepository.deleteById(id);
+
+		pessoaService.deleteById(id);
+
 	}
 
 }
