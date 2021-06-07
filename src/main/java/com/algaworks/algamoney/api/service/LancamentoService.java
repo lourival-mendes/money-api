@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -42,9 +41,6 @@ public class LancamentoService {
 
 	@Autowired
 	private Mailer mailer;
-
-	@Autowired
-	private MessageSource messageSource;
 
 	@Autowired
 	private S3 s3;
