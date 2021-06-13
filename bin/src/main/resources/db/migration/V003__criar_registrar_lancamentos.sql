@@ -28,16 +28,56 @@ CREATE TABLE public.lancamento
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.lancamento
-    OWNER to postgres;
-    
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',10.50, 'observação', 'DESPESA', 1, 1);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',11.50, 'observação', 'DESPESA', 2, 2);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',12.50, 'observação', 'DESPESA', 3, 3);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',13.50, 'observação', 'DESPESA', 4, 4);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',14.50, 'observação', 'DESPESA', 5, 5);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',15.50, 'observação', 'RECEITA', 1, 6);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',16.50, 'observação', 'RECEITA', 2, 7);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',17.50, 'observação', 'RECEITA', 3, 8);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',18.50, 'observação', 'RECEITA', 4, 9);
-  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-04-13', '2021-04-14',19.50, 'observação', 'RECEITA', 5, 10);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-11', '2021-04-14',100.50, 'observação', 'DESPESA', 1, 1);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-12', '2021-04-14',101.50, 'observação', 'DESPESA', 2, 2);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-04-14',120.50, 'observação', 'DESPESA', 3, 3);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-14', '2021-04-14',130.50, 'observação', 'DESPESA', 4, 4);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-15', '2021-04-14',140.50, 'observação', 'DESPESA', 5, 5);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-04-14',150.50, 'observação', 'RECEITA', 1, 6);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-04-14',160.50, 'observação', 'RECEITA', 2, 7);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-15', '2021-04-14',170.50, 'observação', 'RECEITA', 3, 8);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-04-14',180.50, 'observação', 'RECEITA', 4, 9);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-14', '2021-04-14',190.50, 'observação', 'RECEITA', 5, 10);
+
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-05-01',100.50, 'observação', 'DESPESA', 1, 1);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-05-02',110.50, 'observação', 'DESPESA', 2, 2);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-14', '2021-05-03',120.50, 'observação', 'DESPESA', 3, 3);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-15', '2021-05-04',130.50, 'observação', 'DESPESA', 4, 4);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-16', '2021-05-05',140.50, 'observação', 'DESPESA', 5, 5);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-17', '2021-05-06',150.50, 'observação', 'RECEITA', 1, 6);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-17', '2021-05-07',160.50, 'observação', 'RECEITA', 2, 7);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-17', '2021-05-08',170.50, 'observação', 'RECEITA', 3, 8);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-17', '2021-05-09',180.50, 'observação', 'RECEITA', 4, 9);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-17', '2021-05-10',190.50, 'observação', 'RECEITA', 5, 10);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-18', '2021-05-11',100.50, 'observação', 'DESPESA', 1, 1);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-18', '2021-05-12',110.50, 'observação', 'DESPESA', 2, 2);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-18', '2021-05-13',120.50, 'observação', 'DESPESA', 3, 3);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-18', '2021-05-14',130.50, 'observação', 'DESPESA', 4, 4);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-18', '2021-05-15',140.50, 'observação', 'DESPESA', 5, 5);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-18', '2021-05-16',150.50, 'observação', 'RECEITA', 1, 6);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-05-17',160.50, 'observação', 'RECEITA', 2, 7);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-05-18',170.50, 'observação', 'RECEITA', 3, 8);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-05-19',1800.50, 'observação', 'RECEITA', 4, 9);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-05-20',190.50, 'observação', 'RECEITA', 5, 10);
+  
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-01',109.50, 'observação', 'DESPESA', 1, 1);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-02',119.50, 'observação', 'DESPESA', 2, 2);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-03',129.50, 'observação', 'DESPESA', 3, 3);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-04',139.50, 'observação', 'DESPESA', 4, 4);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-05',149.50, 'observação', 'DESPESA', 5, 5);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-06',159.50, 'observação', 'RECEITA', 1, 6);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-07',169.50, 'observação', 'RECEITA', 2, 7);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-08',179.50, 'observação', 'RECEITA', 3, 8);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-09',189.50, 'observação', 'RECEITA', 4, 9);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-10',199.50, 'observação', 'RECEITA', 5, 10);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-11',109.50, 'observação', 'DESPESA', 1, 1);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-23', '2021-07-12',119.50, 'observação', 'DESPESA', 2, 2);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-13',129.50, 'observação', 'DESPESA', 3, 3);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-14',139.50, 'observação', 'DESPESA', 4, 4);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-15',149.50, 'observação', 'DESPESA', 5, 5);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-16',157.50, 'observação', 'RECEITA', 1, 6);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-17',167.50, 'observação', 'RECEITA', 2, 7);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-18',177.50, 'observação', 'RECEITA', 3, 8);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-19',187.50, 'observação', 'RECEITA', 4, 9);
+  INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, id_categoria, id_pessoa) values ('descrição', '2021-05-13', '2021-07-20',196.50, 'observação', 'RECEITA', 5, 10);
+  

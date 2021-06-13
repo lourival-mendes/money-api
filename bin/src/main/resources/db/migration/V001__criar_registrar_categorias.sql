@@ -11,9 +11,6 @@ CREATE TABLE public.categoria
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.categoria
-    OWNER to postgres;
-  
   INSERT INTO public.categoria(nome) values ('Lazer');
   INSERT INTO public.categoria(nome) values ('Alimentação');
   INSERT INTO public.categoria(nome) values ('Supermercado');

@@ -219,10 +219,50 @@
 					"name": "criar",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": true,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairro\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": true,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairro\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    }, \"contatos\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar com contato",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": true,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairro\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    },\r\n    \"contatos\": [\r\n        {\r\n            \"nome\": \"Robson\",\r\n            \"email\": \"robson@robson.com\",\r\n            \"telefone\": \"61 99999-9999\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -247,7 +287,13 @@
 					"name": "criar sem endereço",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": true\r\n}",
@@ -295,10 +341,16 @@
 					"name": "atualizar id",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": \"true\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairros\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"nome\": \"Lourival\",\r\n    \"ativo\": \"true\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Condominio Quinta dos Ipês\",\r\n        \"numero\": \"1\",\r\n        \"complemento\": \"complemento\",\r\n        \"bairro\": \"bairros\",\r\n        \"cep\": \"71693400\",\r\n        \"cidade\": \"cidade\",\r\n        \"estado\": \"DF\"\r\n    },\r\n    \"contatos\": [\r\n        {\r\n            \"nome\": \"Lourival\",\r\n            \"telefone\": \"60 99373-3203\",\r\n            \"email\": \"lourivalmendes@hotmail.com\"\r\n        },\r\n        {\r\n            \"nome\": \"Robson\",\r\n            \"telefone\": \"61 99998-3203\",\r\n            \"email\": \"robson@hotmail.com\"\r\n        },\r\n        {\r\n            \"nome\": \"Robson teste\",\r\n            \"email\": \"robson@hotmail.com\",\r\n            \"telefone\": \"61 99998-3203\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -324,7 +376,13 @@
 					"name": "atualizar ativo id",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "false",
@@ -374,7 +432,13 @@
 					"name": "buscar todas",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/pessoas",
 							"protocol": "http",
@@ -577,6 +641,191 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "resumo",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTg4NTkwNzEsInVzZXJfbmFtZSI6Im1pbmhhdmlydHVkZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSIsIlJPTEVfUkVNT1ZFUl9DQVRFR09SSUEiXSwianRpIjoiZDAzNDY2NzktZGNlMi00YmI3LThhMDYtNGZkYmY0ZTgyOTZkIiwiY2xpZW50X2lkIjoiYW5ndWxhciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImVyYXNlIl19.eyvPYWHD3Cnnvuv1Tg3ZYhXLf6eMMce8gZ4tVcpVDds",
+										"type": "text"
+									},
+									{
+										"key": "username",
+										"value": "lourivalmendes@hotmail.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "password",
+										"value": "admin",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos?resumo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos"
+									],
+									"query": [
+										{
+											"key": "resumo",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Estatisticas",
+					"item": [
+						{
+							"name": "por-categoria",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjE4ODk5OTYsInVzZXJfbmFtZSI6Im1pbmhhdmlydHVkZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSIsIlJPTEVfUkVNT1ZFUl9DQVRFR09SSUEiXSwianRpIjoiNTVkMmU4NTYtZGFkMy00ODkzLTkwYWUtYTVmZTJjODNmOGEyIiwiY2xpZW50X2lkIjoiYW5ndWxhciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImVyYXNlIl19.G3sEdR4W6r6Sg3rS1oU9qk73cBB6pAVfAtm6Fl93QA0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos/estatisticas/por-categoria/2021-05-01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos",
+										"estatisticas",
+										"por-categoria",
+										"2021-05-01"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por-dia [ref: data-vencimento]",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjE4OTMzNjQsInVzZXJfbmFtZSI6Im1pbmhhdmlydHVkZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSIsIlJPTEVfUkVNT1ZFUl9DQVRFR09SSUEiXSwianRpIjoiMGVlNjJlOGUtZjBkZS00MTVlLWFlODEtMjUwMTY2NGQ0YzEyIiwiY2xpZW50X2lkIjoiYW5ndWxhciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImVyYXNlIl19.pSkZlfUJ-QpW8EWIcgANuXPm6kBFZd2t_RJC7RhhkPk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos/estatisticas/por-dia/2021-05-01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos",
+										"estatisticas",
+										"por-dia",
+										"2021-05-01"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por-pessoa [ref: periodo de vencimento]",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/lancamentos/estatisticas/por-pessoa?dataInicial=2021-01-01&dataFinal=2021-12-30",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos",
+										"estatisticas",
+										"por-pessoa"
+									],
+									"query": [
+										{
+											"key": "dataInicial",
+											"value": "2021-01-01"
+										},
+										{
+											"key": "dataFinal",
+											"value": "2021-12-30"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Anexo",
+					"item": [
+						{
+							"name": "Enviar anexo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "anexo",
+											"type": "file",
+											"src": "/C:/Users/Helena/Desktop/read-me para github-2.txt"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/lancamentos/anexo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"lancamentos",
+										"anexo"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -717,7 +966,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 81c53907-42cb-434c-93f4-e816bf29a82a",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
@@ -789,19 +1038,19 @@
 			"name": "oauth",
 			"item": [
 				{
-					"name": "novo access token",
+					"name": "access token",
 					"request": {
 						"auth": {
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "mobile",
+									"key": "password",
+									"value": "algaworks",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "@ngul@r0",
+									"key": "username",
+									"value": "angular",
 									"type": "string"
 								}
 							]

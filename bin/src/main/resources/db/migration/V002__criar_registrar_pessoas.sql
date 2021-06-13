@@ -19,9 +19,6 @@ CREATE TABLE public.pessoa
 
 TABLESPACE pg_default;
 
-ALTER TABLE public.pessoa
-    OWNER to postgres;
-    
   INSERT INTO public.pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Lourival', 'Condominio Quinta dos Ipês', '1','complemento', 'bairro', '71693400', 'cidade', 'DF', true);
   INSERT INTO public.pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Lourival', 'Condominio Quinta dos Ipês', '2','complemento', 'bairro', '71693400', 'cidade', 'DF', true);
   INSERT INTO public.pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Lourival', 'Condominio Quinta dos Ipês', '3','complemento', 'bairro', '71693400', 'cidade', 'DF', true);

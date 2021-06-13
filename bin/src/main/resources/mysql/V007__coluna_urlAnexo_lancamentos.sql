@@ -1,0 +1,1 @@
+ALTER TABLE `lancamento` ADD COLUMN url_anexo VARCHAR(200);
