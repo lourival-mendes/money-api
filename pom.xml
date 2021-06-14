@@ -9,11 +9,11 @@
 		<version>2.4.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.algaworks.algamoney-api</groupId>
-	<artifactId>algamoney-api</artifactId>
+	<groupId>br.com.lourivalmendes.money.api</groupId>
+	<artifactId>money-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>algamoney-api</name>
-	<description>API algamoney</description>
+	<name>money-api</name>
+	<description>API Money</description>
 	<properties>
 		<java.version>14</java.version>
 	</properties>
