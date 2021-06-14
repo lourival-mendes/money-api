@@ -18,7 +18,7 @@ import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
 public class CorsConfig {
 
 	@Autowired
-	private MoneyApiProperty algaMoneyApiProperty;
+	private MoneyApiProperty moneyApiProperty;
 
 	@Bean
 	public FilterRegistrationBean<CorsFilter> corsFilter() {
@@ -26,7 +26,7 @@ public class CorsConfig {
 
 		CorsConfiguration configAutenticacao = new CorsConfiguration();
 		configAutenticacao.setAllowCredentials(true);
-		configAutenticacao.addAllowedOrigin(algaMoneyApiProperty.getOriginPermitida());
+		configAutenticacao.addAllowedOrigin(moneyApiProperty.getOriginPermitida());
 		configAutenticacao.addAllowedHeader("Authorization");
 		configAutenticacao.addAllowedHeader("Content-Type");
 		configAutenticacao.addAllowedHeader("Accept");

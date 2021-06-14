@@ -22,7 +22,7 @@ import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
 public class CorsFilter implements Filter {
 
 	@Autowired
-	private MoneyApiProperty algaMoneyApiProperty;
+	private MoneyApiProperty moneyApiProperty;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -30,7 +30,7 @@ public class CorsFilter implements Filter {
 
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-		String originPermitida = algaMoneyApiProperty.getOriginPermitida();
+		String originPermitida = moneyApiProperty.getOriginPermitida();
 
 		httpServletResponse.setHeader("Access-Control-Allow-Origin", originPermitida);
 		httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
