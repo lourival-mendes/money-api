@@ -33,7 +33,7 @@ public class MoneyApiApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins(moneyApiProperty.getOriginPermitida())
+				registry.addMapping("*").allowedOrigins("*")
 				.allowCredentials(true)
 				.allowedMethods("POST, GET, DELETE, PUT, OPTIONS")
 				.allowedHeaders("Authorization, Content-Type, Accept")
