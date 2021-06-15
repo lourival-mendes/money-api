@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
 
-//@Order(Ordered.HIGHEST_PRECEDENCE)
-//@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+@Component
 public class CorsFilter implements Filter {
 
 	@Autowired
@@ -42,9 +42,9 @@ public class CorsFilter implements Filter {
 			httpServletResponse.setHeader("Access-Control-Allow-Max-Age", "3600");
 
 			httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-		} else {
-			chain.doFilter(httpServletRequest, httpServletResponse);
 		}
+
+		chain.doFilter(httpServletRequest, httpServletResponse);
 
 	}
 
