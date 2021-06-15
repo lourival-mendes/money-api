@@ -3,6 +3,7 @@ package br.com.lourivalmendes.money.api.cors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -14,7 +15,7 @@ import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
  * Esta classe é uma alternativa relativa a CorsFilter, estudar para decidir
  * qual utilizar.
  */
-//@Configuration
+@Configuration
 public class CorsConfig {
 
 	@Autowired
