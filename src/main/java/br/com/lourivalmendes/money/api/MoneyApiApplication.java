@@ -28,18 +28,18 @@ public class MoneyApiApplication {
 		return APPLICATION_CONTEXT.getBean(type);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("*").allowedOrigins("*")
-				.allowCredentials(true)
-				.allowedMethods("POST, GET, DELETE, PUT, OPTIONS")
-				.allowedHeaders("Authorization, Content-Type, Accept")
-				.maxAge(3600);
-			}
-		};
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("*/**").allowedOrigins("*")
+//				.allowCredentials(true)
+//				.allowedMethods("POST, GET, DELETE, PUT, OPTIONS")
+//				.allowedHeaders("Authorization, Content-Type, Accept")
+//				.maxAge(3600);
+//			}
+//		};
+//	}
 
 }
