@@ -32,7 +32,7 @@ public class CorsFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String originPermitida = moneyApiProperty.getOriginPermitida();
 
-		httpServletResponse.setHeader("Access-Control-Allow-Origin", originPermitida);
+		httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
 		httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
 
 		if ("OPTIONS".equals(httpServletRequest.getMethod())
@@ -42,9 +42,8 @@ public class CorsFilter implements Filter {
 			httpServletResponse.setHeader("Access-Control-Allow-Max-Age", "3600");
 
 			httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-		}
-
-		chain.doFilter(httpServletRequest, httpServletResponse);
+		} else
+			chain.doFilter(httpServletRequest, httpServletResponse);
 
 	}
 
