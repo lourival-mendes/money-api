@@ -44,6 +44,8 @@ public class CorsFilter implements Filter {
 			httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 		} else
 			chain.doFilter(httpServletRequest, httpServletResponse);
+		
+		System.out.println(httpServletResponse.toString());
 
 	}
 
