@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
-@Component
+//@Order(Ordered.HIGHEST_PRECEDENCE)
+//@Component
 public class CorsFilter implements Filter {
 
 	@Autowired
@@ -44,7 +44,6 @@ public class CorsFilter implements Filter {
 			httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 		} else {
 			chain.doFilter(httpServletRequest, httpServletResponse);
-			System.out.println(httpServletResponse.getHeaderNames());
 		}
 
 	}
