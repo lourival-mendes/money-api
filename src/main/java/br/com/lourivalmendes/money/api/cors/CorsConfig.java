@@ -15,7 +15,7 @@ import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
  * Esta classe é uma alternativa relativa a CorsFilter, estudar para decidir
  * qual utilizar.
  */
-@Configuration
+//@Configuration
 public class CorsConfig {
 
 	@Autowired
