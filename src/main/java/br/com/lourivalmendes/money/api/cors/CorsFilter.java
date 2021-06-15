@@ -45,7 +45,7 @@ public class CorsFilter implements Filter {
 		} else
 			chain.doFilter(httpServletRequest, httpServletResponse);
 		
-		System.out.println(httpServletResponse.toString());
+		System.out.println(httpServletResponse.getHeader("Origin"));
 
 	}
 
