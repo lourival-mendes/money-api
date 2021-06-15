@@ -44,7 +44,7 @@ public class CorsFilter implements Filter {
 			httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 		} else {
 			chain.doFilter(httpServletRequest, httpServletResponse);
-			System.out.println(httpServletResponse.getHeader("Access-Control-Allow-Origin"));
+			System.out.println(httpServletResponse.getHeaderNames());
 		}
 
 	}
