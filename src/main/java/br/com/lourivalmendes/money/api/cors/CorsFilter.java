@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.lourivalmendes.money.api.config.property.MoneyApiProperty;
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
 	@Autowired
@@ -32,7 +32,10 @@ public class CorsFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String originPermitida = moneyApiProperty.getOriginPermitida();
 
-		httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+		System.out.println("originPermitida");
+		System.out.println(originPermitida);
+		
+		httpServletResponse.setHeader("Access-Control-Allow-Origin", originPermitida);
 		httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
 
 		if ("OPTIONS".equals(httpServletRequest.getMethod())
