@@ -32,9 +32,6 @@ public class CorsFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String originPermitida = moneyApiProperty.getOriginPermitida();
 
-		System.out.println("originPermitida");
-		System.out.println(originPermitida);
-		
 		httpServletResponse.setHeader("Access-Control-Allow-Origin", originPermitida);
 		httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
 
