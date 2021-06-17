@@ -1,6 +1,7 @@
 package br.com.lourivalmendes.money.api.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +36,7 @@ public class Contato {
 	@Size(min = 10, max = 20)
 	private String telefone;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pessoa")
 	private Pessoa pessoa;
 
