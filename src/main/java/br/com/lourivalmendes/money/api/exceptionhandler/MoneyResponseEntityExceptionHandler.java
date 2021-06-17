@@ -28,7 +28,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @ControllerAdvice
-public class AlgaMoneyResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class MoneyResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@Autowired
 	private MessageSource messageSource;
