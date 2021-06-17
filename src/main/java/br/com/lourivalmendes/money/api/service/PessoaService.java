@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +21,6 @@ public class PessoaService {
 
 	@Autowired
 	private LancamentoRepository lancamentoRepository;
-
-	@Autowired
-	private MessageSource messageSource;
 
 	public Pessoa save(Pessoa pessoa) {
 
